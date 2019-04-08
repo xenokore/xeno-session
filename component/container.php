@@ -4,6 +4,13 @@ namespace Xenokore\Session;
 
 return [
     Session::class => function () {
-        return new Session($_SESSION ?? []);
+
+        $session_array = [];
+
+        if (isset($_SESSION)) {
+            $session_array = &$_SESSION;
+        }
+
+        return new Session($session_array);
     },
 ];
