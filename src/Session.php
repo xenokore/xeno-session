@@ -219,8 +219,7 @@ class Session extends \ArrayObject implements SessionInterface
 
     public function &offsetGet($index)
     {
-        $val = $this->get($index, null);
-        return $val;
+        return $this->session_array_ref[$index];
     }
 
     public function offsetSet($config, $value): void

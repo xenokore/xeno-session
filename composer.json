@@ -1,6 +1,6 @@
 {
     "name": "xenokore/session",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "type": "library",
     "description": "Simple Session handling library",
     "keywords": ["session", "handler"],
