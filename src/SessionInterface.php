@@ -7,8 +7,8 @@ interface SessionInterface extends \ArrayAccess, \Countable, \IteratorAggregate
     /**
      * Constructor
      *
-     * @param array &$session_array_ref   A reference to the original session array. This will probably be $_SESSION
-     * @param bool $refresh_session       Whether or not the session expire time should automatically be refreshed.
+     * @param array &$session_array_ref A reference to the original session array. This will probably be $_SESSION
+     * @param bool  $refresh_session    Whether or not the session expire time should automatically be refreshed.
      */
     public function __construct(array &$session_array_ref = [], bool $refresh_session = true);
 
@@ -20,8 +20,8 @@ interface SessionInterface extends \ArrayAccess, \Countable, \IteratorAggregate
     /**
      * Get a session variable. Returns a default value if the value was not found. (Default: null)
      *
-     * @param string $key
-     * @param mixed $default   A default return value for when the key was not found
+     * @param  string $key
+     * @param  mixed  $default A default return value for when the key was not found
      * @return mixed
      */
     public function get(string $key, $default = null);
@@ -29,8 +29,8 @@ interface SessionInterface extends \ArrayAccess, \Countable, \IteratorAggregate
     /**
      * Set a session variable.
      *
-     * @param string $key
-     * @param mixed $value
+     * @param  string $key
+     * @param  mixed  $value
      * @return void
      */
     public function set(string $key, $value): void;
@@ -38,7 +38,7 @@ interface SessionInterface extends \ArrayAccess, \Countable, \IteratorAggregate
     /**
      * Remove an item from the session
      *
-     * @param string $key
+     * @param  string $key
      * @return void
      */
     public function unset(string $key): void;
@@ -53,8 +53,8 @@ interface SessionInterface extends \ArrayAccess, \Countable, \IteratorAggregate
     /**
      * Set a session variable only to be retrieved once.
      *
-     * @param string $key
-     * @param mixed $value
+     * @param  string $key
+     * @param  mixed  $value
      * @return void
      */
     public function once(string $key, $value): void;
@@ -62,9 +62,9 @@ interface SessionInterface extends \ArrayAccess, \Countable, \IteratorAggregate
     /**
      * Get a one-time retrievable session variable. (Instantly removes it from the session)
      *
-     * @param string $key
-     * @param mixed $default
-     * @param bool $remove    Remove the variable from the session. (default: true)
+     * @param  string $key
+     * @param  mixed  $default
+     * @param  bool   $remove  Remove the variable from the session. (default: true)
      * @return mixed
      */
     public function getOnce(string $key, $default = null, bool $remove = true);
@@ -72,7 +72,7 @@ interface SessionInterface extends \ArrayAccess, \Countable, \IteratorAggregate
     /**
      * Get all one-time retrievable session variables. (Instantly removes them from the session)
      *
-     * @param bool $remove    Remove the variables from the session. (default: true)
+     * @param  bool $remove Remove the variables from the session. (default: true)
      * @return array   An array containing the one-time variables. Returns an empty array when none are found.
      */
     public function getAllOnce(bool $remove = true): array;
@@ -92,6 +92,7 @@ interface SessionInterface extends \ArrayAccess, \Countable, \IteratorAggregate
     public function getIterator(): \Generator;
 
     // \ArrayAccess
+    #[\ReturnTypeWillChange]
     public function &offsetGet($index);
     public function offsetSet($config, $value): void;
     public function offsetExists($index): bool;

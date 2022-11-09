@@ -2,15 +2,23 @@
 
 namespace Xenokore\Session;
 
+use Xenokore\Session\SessionException;
+
 return [
     Session::class => function () {
 
-        $session_array = [];
+        if (\session_status() == PHP_SESSION_NONE) {
+            if (!\session_start()) {
+                throw new SessionException('Failed to start session');
+            }
+         }
 
         if (isset($_SESSION)) {
-            $session_array = &$_SESSION;
+            return new Session($_SESSION);
+        } else {
+            $temp_array = [];
+            return new Session($temp_array);
         }
 
-        return new Session($session_array);
     },
 ];

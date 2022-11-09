@@ -217,6 +217,7 @@ class Session extends \ArrayObject implements SessionInterface
         })();
     }
 
+    #[\ReturnTypeWillChange]
     public function &offsetGet($index)
     {
         return $this->session_array_ref[$index];
